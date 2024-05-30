@@ -27,7 +27,7 @@ aws_region = os.getenv('AWS_REGION', 'us-east-1')
 ###### end of environment variables
 
 ### Global variables ###
-modelID = 'anthropic.claude-v2'
+modelID = 'anthropic.claude-instant-v1'
 
 #Bedrock client
 bedrock_client = boto3.client(
