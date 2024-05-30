@@ -21,8 +21,9 @@ import streamlit as st
 ###### end of imports
 
 ### environment variables ###
-os.environ['AWS_REGION'] = 'us-east-1'
-os.environ['AWS_PROFILE'] = 'aws_ai_901236904'
+aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
+aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+aws_region = os.getenv('AWS_REGION', 'us-east-1')
 ###### end of environment variables
 
 ### Global variables ###
@@ -31,9 +32,10 @@ modelID = 'anthropic.claude-v2'
 #Bedrock client
 bedrock_client = boto3.client(
     service_name='bedrock-runtime',
-    region_name=os.environ['AWS_REGION']
+    region_name=aws_region,
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
 )
-
 #LLM model
 llm = BedrockLLM(
     model_id=modelID,
